@@ -1,0 +1,9 @@
+{% extends "core/base.html" %}
+
+{% block title %}Meus itens{% endblock %}
+
+{% block content %}
+<h1>Finge que isso aqui é uma lista dos meus itens</h1>
+<a href="{% url 'itens:novo-item' %}">Cadastrar novo item</a>
+<a href="{% url 'itens:nova-categoria' %}">Cadastrar nova categoria</a>
+{% endblock %}
