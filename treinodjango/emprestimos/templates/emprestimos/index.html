@@ -1,0 +1,8 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Meus empréstimos{% endblock %}
+
+{% block content %}
+<h1>Esta página mostrará meus empréstimos.</h1>
+<a href="{% url 'emprestimos:novo' %}">Registrar novo empréstimo</a>
+{% endblock %}

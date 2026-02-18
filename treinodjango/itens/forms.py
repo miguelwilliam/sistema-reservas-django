@@ -4,7 +4,7 @@ from itens.models import Item, Categoria
 class ItemForm(forms.ModelForm):
     class Meta:
         model = Item
-        fields = ['nome', 'categoria_id', 'desc']
+        fields = ['nome', 'desc', 'categoria_id']
 
 class CategoriaForm(forms.ModelForm):
     class Meta:
