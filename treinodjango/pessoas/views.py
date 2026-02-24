@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
 from . import forms
+from .models import Pessoa
 
 # Create your views here.
 def home(request):
-    return render(request, 'pessoas/index.html')
+    pessoas = Pessoa.objects.all()
+    context = {'pessoas': pessoas}
+    return render(request, 'pessoas/index.html', context)
 
 def nova(request):
     form = forms.PessoaForm

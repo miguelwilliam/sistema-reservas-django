@@ -1,9 +1,13 @@
 from django.shortcuts import render, redirect
 from . import forms
+from .models import Categoria, Item
 
 # Create your views here.
 def home(request):
-    return render(request, 'itens/index.html')
+    categorias = Categoria.objects.all()
+    itens = Item.objects.all()
+    context = {'categorias': categorias, 'itens': itens}
+    return render(request, 'itens/index.html', context)
 
 def novo_item(request):
     form = forms.ItemForm

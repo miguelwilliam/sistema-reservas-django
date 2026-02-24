@@ -3,6 +3,28 @@
 {% block title %}Pessoas{% endblock %}
 
 {% block content %}
-<h1>Lista de pessoas cadastradas no sistema...</h1>
-<a href="{% url 'pessoas:nova' %}">Adicionar uma nova pessoa</a>
+<div class="container">
+    <h1>Pessoas cadastradas</h1>
+    {% if pessoas %}
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>N. de Telefone</th>
+            <th>Ação</th>
+        </tr>
+        {% for pessoa in pessoas %}
+        <tr>
+            <td>{{ pessoa.nome }}</td>
+            <td>{{ pessoa.numero }}</td>
+            <td><a href="#">Apagar</a><br><a href="#">Editar</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="{% url 'pessoas:nova' %}">Adicionar pessoa</a>
+    {% else %}
+    <h2>Não existe nenhuma pessoa cadastrada no momento!</h2>
+    <a href="{% url 'pessoas:nova' %}">Adicionar pessoa</a>
+    {% endif %}
+</div>
 {% endblock %}

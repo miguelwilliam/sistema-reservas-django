@@ -1,9 +1,59 @@
-{% extends "core/base.html" %}
+{% extends 'core/base.html' %}
 
-{% block title %}Meus itens{% endblock %}
+{% block title %}Itens{% endblock %}
 
 {% block content %}
-<h1>Finge que isso aqui é uma lista dos meus itens</h1>
-<a href="{% url 'itens:novo-item' %}">Cadastrar novo item</a>
-<a href="{% url 'itens:nova-categoria' %}">Cadastrar nova categoria</a>
+<div class="container">
+    <h1>Itens cadastrados</h1>
+    {% if itens %}
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>Categoria</th>
+            <th>Descrição</th>
+            <th>Status</th>
+            <th>Ação</th>
+        </tr>
+        {% for item in itens %}
+        <tr>
+            <td>{{ item.nome }}</td>
+            <td>{{ item.categoria }}</td>
+            <td>{{ item.desc }}</td>
+            <td>{% if item.atualmente_emprestado %}Emprestado{% else %}Disponível{% endif %}</td>
+            <td><a href="#">Apagar</a><br><a href="#">Editar</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="{% url 'itens:novo-item' %}">Cadastrar novo item</a>
+
+    {% else %}
+    <h2>Não existe nenhum item cadastrado no momento!</h2>
+    <a href="{% url 'itens:novo-item' %}">Cadastrar novo item</a>
+    {% endif %}
+</div>
+
+<div class="container">
+    <h2>Lista de categorias</h2>
+    {% if categorias %}
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>Ações</th>
+        </tr>
+        {% for categoria in categorias %}
+        <tr>
+            <td>{{ categoria.nome }}</td>
+            <td><a href="#">Apagar</a><br><a href="#">Editar</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="{% url 'itens:nova-categoria' %}">Cadastrar nova categoria</a>
+
+    {% else %}
+    <h2>Não existe nenhuma categoria cadastrada no momento!</h2>
+    <a href="{% url 'itens:nova-categoria' %}">Cadastrar nova categoria</a>
+    {% endif %}
+</div>
 {% endblock %}
