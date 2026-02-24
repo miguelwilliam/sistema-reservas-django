@@ -1,0 +1,8 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Pessoas{% endblock %}
+
+{% block content %}
+<h1>Lista de pessoas cadastradas no sistema...</h1>
+<a href="{% url 'pessoas:nova' %}">Adicionar uma nova pessoa</a>
+{% endblock %}
