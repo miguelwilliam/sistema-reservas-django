@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from . import forms
 
 # Create your views here.
@@ -14,7 +14,7 @@ def novo_item(request):
             form.save()
             print('FORMULÁRIO SALVO COM SUCESSO')
 
-            return render(request, 'itens/index.html')
+            return redirect('itens:home')
     
     context = {'form': form}
     return render(request, 'itens/novo_item.html', context)

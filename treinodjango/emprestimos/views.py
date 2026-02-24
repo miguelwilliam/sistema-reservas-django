@@ -9,8 +9,11 @@ def novo(request):
     form = forms.EmprestimoForm
 
     if request == 'POST':
+        form = forms.EmprestimoForm(request.POST)
         if form.is_valid():
             form.save()
+            print('EMPRESTIMO SALVO COM SUCESSO')
+
             return redirect('emprestimos:home')
     
     context = {'form': form}
