@@ -10,6 +10,6 @@ class Categoria(models.Model):
 
 class Item(models.Model):
     nome = models.CharField('Nome',max_length=255)
-    categoria_id = models.ForeignKey(Categoria, on_delete=models.CASCADE)
+    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     desc = models.CharField('Descrição', max_length=255)
     atualmente_emprestado = models.BooleanField('Está atualmente emprestado', default=False)

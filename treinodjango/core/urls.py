@@ -20,5 +20,5 @@ from . import views
 
 app_name = 'core'
 urlpatterns = [
-    path('', views.home, name = 'index'),
+    path('', views.home, name = 'home'),
 ]
