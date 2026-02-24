@@ -13,3 +13,6 @@ class Item(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     desc = models.CharField('Descrição', max_length=255)
     atualmente_emprestado = models.BooleanField('Está atualmente emprestado', default=False)
+
+    def __str__(self):
+        return self.nome
