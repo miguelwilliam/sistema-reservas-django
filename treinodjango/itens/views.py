@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from . import forms
 from .models import Categoria, Item
 
@@ -39,7 +39,7 @@ def nova_categoria(request):
 
 def apagar_item(request, id):
     try:
-        item = Item.objects.get(id = id)
+        item = get_object_or_404(Item, id=id)
         item.delete()
 
         print('ITEM APAGADO COM SUCESSO')
@@ -51,7 +51,7 @@ def apagar_item(request, id):
     
 def apagar_categoria(request, id):
     try:
-        categoria = Categoria.objects.get(id = id)
+        categoria = get_object_or_404(Categoria, id = id)
         categoria.delete()
 
         print('CATEGORIA APAGADA COM SUCESSO')

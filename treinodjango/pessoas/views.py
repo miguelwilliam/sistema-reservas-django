@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from . import forms
 from .models import Pessoa
 
@@ -24,7 +24,7 @@ def nova(request):
 
 def apagar(request, id):
     try:
-        pessoa = Pessoa.objects.get(id=id)
+        pessoa = get_object_or_404(Pessoa, id=id)
         pessoa.delete()
 
         print('CADASTRO APAGADO COM SUCESSO')

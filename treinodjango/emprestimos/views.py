@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from . import forms
 from .models import Emprestimo
@@ -43,7 +43,7 @@ def apagar(request, id):
 
 def devolucao(request, id):
     try:
-        emprestimo = Emprestimo.objects.get(id=id)
+        emprestimo = get_object_or_404(Emprestimo, id=id)
         emprestimo.item.atualmente_emprestado = False
         emprestimo.data_hora_devolucao = timezone.localtime(timezone.now())
         print(timezone.localtime(timezone.now()))
