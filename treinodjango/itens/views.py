@@ -32,7 +32,7 @@ def nova_categoria(request):
             form.save()
             print('FORMULÁRIO SALVO COM SUCESSO')
 
-            return render(request, 'itens/index.html')
+            return redirect('itens:home')
     
     context = {'form': form}
     return render(request, 'itens/nova_categoria.html', context)
@@ -47,4 +47,16 @@ def apagar_item(request, id):
     
     except:
         print('ERRO AO APAGAR O ITEM')
+        return redirect('itens:home')
+    
+def apagar_categoria(request, id):
+    try:
+        categoria = Categoria.objects.get(id = id)
+        categoria.delete()
+
+        print('CATEGORIA APAGADA COM SUCESSO')
+        return redirect('itens:home')
+    
+    except:
+        print('ERRO AO APAGAR A CATEGORIA')
         return redirect('itens:home')

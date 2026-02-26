@@ -44,7 +44,7 @@
         {% for categoria in categorias %}
         <tr>
             <td>{{ categoria.nome }}</td>
-            <td><a href="#">Apagar</a><br><a href="#">Editar</a></td>
+            <td><a href="{% url 'itens:apagar-categoria' id=categoria.id %}">Apagar</a><br><a href="#">Editar</a></td>
         </tr>
         {% endfor %}
     </table>

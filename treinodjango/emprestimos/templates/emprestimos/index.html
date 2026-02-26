@@ -3,6 +3,34 @@
 {% block title %}Meus empréstimos{% endblock %}
 
 {% block content %}
-<h1>Esta página mostrará meus empréstimos.</h1>
-<a href="{% url 'emprestimos:novo' %}">Registrar novo empréstimo</a>
+<div class="container">
+    <h1>Emprestimos cadastrados</h1>
+    {% if emprestimos %}
+    <table>
+        <tr>
+            <th>Data e hora do empréstimo</th>
+            <th>Pessoa</th>
+            <th>Item</th>
+            <th>Status</th>
+            <th>Ações</th>
+        </tr>
+        {% for emprestimo in emprestimos %}
+        <tr>
+            <td>{{ emprestimo.data_hora_emprestimo }}</td>
+            <td>{{ emprestimo.pessoa }}</td>
+            <td>{{ emprestimo.item }}</td>
+            {% if emprestimo.data_hora_devolucao == Null %}
+            <td>Atualmente emprestado</td>
+            {% else %}
+            <td>Devolvido em {{ emprestimo.data_hora_devolucao }}</td>
+            {% endif %}
+            <td><a href="{% url 'emprestimos:apagar' id=emprestimo.id %}">Apagar</a><br><a href="#">Editar</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <h2>Não existem emprestimos cadastrados!</h2>
+    <a href="{% url 'emprestimos:novo' %}">Registrar novo empréstimo</a>
+    {% endif %}
+</div>
 {% endblock %}
