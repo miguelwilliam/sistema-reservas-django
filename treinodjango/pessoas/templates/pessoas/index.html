@@ -16,7 +16,7 @@
         <tr>
             <td>{{ pessoa.nome }}</td>
             <td>{{ pessoa.numero }}</td>
-            <td><a href="#">Apagar</a><br><a href="#">Editar</a></td>
+            <td><a href="{% url 'pessoas:apagar' id=pessoa.id %}">Apagar</a><br><a href="#">Editar</a></td>
         </tr>
         {% endfor %}
     </table>

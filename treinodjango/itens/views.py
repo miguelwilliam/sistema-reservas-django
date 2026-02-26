@@ -4,8 +4,8 @@ from .models import Categoria, Item
 
 # Create your views here.
 def home(request):
-    categorias = Categoria.objects.all()
-    itens = Item.objects.all()
+    categorias = Categoria.objects.all().order_by('nome')
+    itens = Item.objects.all().order_by('categoria')
     context = {'categorias': categorias, 'itens': itens}
     return render(request, 'itens/index.html', context)
 

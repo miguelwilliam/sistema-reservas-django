@@ -24,13 +24,15 @@
             {% else %}
             <td>Devolvido em {{ emprestimo.data_hora_devolucao }}</td>
             {% endif %}
-            <td><a href="{% url 'emprestimos:apagar' id=emprestimo.id %}">Apagar</a><br><a href="#">Editar</a></td>
+            <td>
+                <a href="{% url 'emprestimos:apagar' id=emprestimo.id %}">Apagar</a><br>{% if emprestimo.data_hora_devolucao == Null %}<a href="{% url 'emprestimos:devolucao' id=emprestimo.id %}">Cadastrar devolução</a><br>{% endif %}<a href="#">Editar</a>
+            </td>
         </tr>
         {% endfor %}
     </table>
     {% else %}
     <h2>Não existem emprestimos cadastrados!</h2>
-    <a href="{% url 'emprestimos:novo' %}">Registrar novo empréstimo</a>
     {% endif %}
+    <a href="{% url 'emprestimos:novo' %}">Registrar novo empréstimo</a>
 </div>
 {% endblock %}

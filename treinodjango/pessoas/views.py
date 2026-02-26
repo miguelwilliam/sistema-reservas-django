@@ -4,7 +4,7 @@ from .models import Pessoa
 
 # Create your views here.
 def home(request):
-    pessoas = Pessoa.objects.all()
+    pessoas = Pessoa.objects.all().order_by('nome')
     context = {'pessoas': pessoas}
     return render(request, 'pessoas/index.html', context)
 
@@ -21,3 +21,14 @@ def nova(request):
         
     context = {'form': form}
     return render(request, 'pessoas/nova.html', context)
+
+def apagar(request, id):
+    try:
+        pessoa = Pessoa.objects.get(id=id)
+        pessoa.delete()
+
+        print('CADASTRO APAGADO COM SUCESSO')
+        return redirect('pessoas:home')
+    except:
+        print('OCORREU UM ERRO DURANTE O APAGAMENTO DO CADASTRO')
+        return redirect('pessoas:home')
