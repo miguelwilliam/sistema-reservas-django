@@ -36,3 +36,15 @@ def nova_categoria(request):
     
     context = {'form': form}
     return render(request, 'itens/nova_categoria.html', context)
+
+def apagar_item(request, id):
+    try:
+        item = Item.objects.get(id = id)
+        item.delete()
+
+        print('ITEM APAGADO COM SUCESSO')
+        return redirect('itens:home')
+    
+    except:
+        print('ERRO AO APAGAR O ITEM')
+        return redirect('itens:home')
