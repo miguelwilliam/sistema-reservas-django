@@ -60,3 +60,35 @@ def apagar_categoria(request, id):
     except:
         print('ERRO AO APAGAR A CATEGORIA')
         return redirect('itens:home')
+
+def editar_item(request, id):
+    item = get_object_or_404(Item, id=id)
+
+    if request.method == 'POST':
+        form = forms.ItemForm(request.POST, instance=item)
+        if  form.is_valid():
+            form.save()
+
+            print('ITEM ATUALIZADO COM SUCESSO')
+            return redirect('itens:home')
+        
+    form = forms.ItemForm(instance=item)
+
+    context = {'form': form, 'tela_atual':'item'}
+    return render(request, 'itens/editar.html', context)
+
+def editar_categoria(request, id):
+    categoria = get_object_or_404(Categoria, id=id)
+
+    if request.method == 'POST':
+        form = forms.CategoriaForm(request.POST, instance=categoria)
+        if  form.is_valid():
+            form.save()
+
+            print('CATEGORIA ATUALIZADO COM SUCESSO')
+            return redirect('itens:home')
+        
+    form = forms.CategoriaForm(instance=categoria)
+
+    context = {'form': form, 'tela_atual':'categoria'}
+    return render(request, 'itens/editar.html', context)

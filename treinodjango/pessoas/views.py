@@ -45,6 +45,6 @@ def editar(request, id):
             return redirect('pessoas:home')
     
     form = forms.PessoaForm(instance=pessoa)
-    
-    context = {'form': form, 'pessoa': pessoa}
+
+    context = {'form': form}
     return render(request, 'pessoas/editar.html', context)

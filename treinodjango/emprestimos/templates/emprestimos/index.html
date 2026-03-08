@@ -25,7 +25,7 @@
             <td>Devolvido em {{ emprestimo.data_hora_devolucao }}</td>
             {% endif %}
             <td>
-                <a href="{% url 'emprestimos:apagar' id=emprestimo.id %}">Apagar</a><br>{% if emprestimo.data_hora_devolucao == Null %}<a href="{% url 'emprestimos:devolucao' id=emprestimo.id %}">Cadastrar devolução</a><br>{% endif %}<a href="#">Editar</a>
+                <a href="{% url 'emprestimos:apagar' id=emprestimo.id %}">Apagar</a>{% if emprestimo.data_hora_devolucao == Null %}<br><a href="{% url 'emprestimos:devolucao' id=emprestimo.id %}">Cadastrar devolução</a>{% endif %}
             </td>
         </tr>
         {% endfor %}

@@ -20,7 +20,7 @@
             <td>{{ item.categoria }}</td>
             <td>{{ item.desc }}</td>
             <td>{% if item.atualmente_emprestado %}Emprestado{% else %}Disponível{% endif %}</td>
-            <td><a href="{% url 'itens:apagar-item' id=item.id %}">Apagar</a><br><a href="#">Editar</a></td>
+            <td><a href="{% url 'itens:apagar-item' id=item.id %}">Apagar</a><br><a href="{% url 'itens:editar-item' id=item.id %}">Editar</a></td>
         </tr>
         {% endfor %}
     </table>
@@ -44,7 +44,7 @@
         {% for categoria in categorias %}
         <tr>
             <td>{{ categoria.nome }}</td>
-            <td><a href="{% url 'itens:apagar-categoria' id=categoria.id %}">Apagar</a><br><a href="#">Editar</a></td>
+            <td><a href="{% url 'itens:apagar-categoria' id=categoria.id %}">Apagar</a><br><a href="{% url 'itens:editar-categoria' id=categoria.id %}">Editar</a></td>
         </tr>
         {% endfor %}
     </table>

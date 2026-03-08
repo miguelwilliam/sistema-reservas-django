@@ -1,8 +1,10 @@
 {% extends 'core/base.html' %}
 
-{% block title %}Editar pessoa{% endblock %}
+{% block title %}Editar {{ tela_atual }}{% endblock %}
 
 {% block content %}
+<h1>Atualizar {{ tela_atual }}</h1>
+
 <form method="post">
     {% csrf_token %}
     {{ form }}
