@@ -32,3 +32,19 @@ def apagar(request, id):
     except:
         print('OCORREU UM ERRO DURANTE O APAGAMENTO DO CADASTRO')
         return redirect('pessoas:home')
+    
+def editar(request, id):
+    pessoa = get_object_or_404(Pessoa, id = id)
+
+    if request.method == 'POST':
+        form = forms.PessoaForm(request.POST, instance=pessoa)
+        if form.is_valid():
+            form.save()
+            print("PESSOA ATUALIZADA COM SUCESSO!")
+
+            return redirect('pessoas:home')
+    
+    form = forms.PessoaForm(instance=pessoa)
+    
+    context = {'form': form, 'pessoa': pessoa}
+    return render(request, 'pessoas/editar.html', context)
